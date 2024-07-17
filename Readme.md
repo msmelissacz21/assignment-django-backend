@@ -15,3 +15,16 @@ terraform init
 terraform destroy
 terraform apply
 ```
+
+# ssh
+If you want to ssh into the ec2 instance after it is deployed do the following
+```bash
+cd terraform
+terraform output private_key
+```
+- copy the private key into a file called ec2_keypair.pem
+- run the following in the same directory as the ec2_keypair.pem
+```bash
+chmod 400 "ec2_keypair.pem"
+ssh -i "ec2_keypair.pem" ubuntu@<your-instances-public-DNS>
+```
